@@ -1,0 +1,17 @@
+Django
+django-cors-headers
+djangorestframework
+fastapi
+huggingface-hub
+langchain
+langchain-community
+langchain-groq
+langchain-huggingface
+Pillow
+python-multipart
+PyPDF2
+pydantic
+requests
+uvicorn
+python-docx
+pytesseract
