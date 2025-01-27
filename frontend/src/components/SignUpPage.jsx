@@ -93,157 +93,170 @@ const SignUpPage = () => {
   const passwordStrength = getPasswordStrength(formData.password);
 
   return (
-    <CenteredContainer>
-      <Typography variant="h4" gutterBottom align="center" sx={{ mb: 3 }}>
-        Create Account
-      </Typography>
+    <Box
+      sx={{
+        maxHeight: "px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "linear-gradient(120deg, #2196f3, #21cbf3, #673ab7, #ff4081)",
+        backgroundSize: "400% 400%",
+        animation: "gradientAnimation 8s ease infinite",
+        padding: "rem",
+              }}
+    >
+      <CenteredContainer>
+        <Typography variant="h4" gutterBottom align="center" sx={{ mb: 3 }}>
+          Create Account
+        </Typography>
 
-      {successMessage && (
-        <Alert
-          severity="success"
-          sx={{ mb: 2 }}
-          onClose={() => setSuccessMessage("")}
-        >
-          {successMessage}
-        </Alert>
-      )}
+        {successMessage && (
+          <Alert
+            severity="success"
+            sx={{ mb: 2 }}
+            onClose={() => setSuccessMessage("")}
+          >
+            {successMessage}
+          </Alert>
+        )}
 
-      {errors.submit && (
-        <Alert
-          severity="error"
-          sx={{ mb: 2 }}
-          onClose={() => setErrors((prev) => ({ ...prev, submit: "" }))}
-        >
-          {errors.submit}
-        </Alert>
-      )}
+        {errors.submit && (
+          <Alert
+            severity="error"
+            sx={{ mb: 2 }}
+            onClose={() => setErrors((prev) => ({ ...prev, submit: "" }))}
+          >
+            {errors.submit}
+          </Alert>
+        )}
 
-      <TextField
-        label="Username"
-        name="username"
-        value={formData.username}
-        onChange={handleInputChange}
-        fullWidth
-        margin="normal"
-        error={!!errors.username}
-        helperText={errors.username}
-        disabled={isLoading}
-      />
+        <TextField
+          label="Username"
+          name="username"
+          value={formData.username}
+          onChange={handleInputChange}
+          fullWidth
+          margin="normal"
+          error={!!errors.username}
+          helperText={errors.username}
+          disabled={isLoading}
+        />
 
-      <TextField
-        label="Email"
-        name="email"
-        value={formData.email}
-        onChange={handleInputChange}
-        fullWidth
-        margin="normal"
-        error={!!errors.email}
-        helperText={errors.email}
-        disabled={isLoading}
-      />
+        <TextField
+          label="Email"
+          name="email"
+          value={formData.email}
+          onChange={handleInputChange}
+          fullWidth
+          margin="normal"
+          error={!!errors.email}
+          helperText={errors.email}
+          disabled={isLoading}
+        />
 
-      <TextField
-        label="Password"
-        name="password"
-        type={showPassword ? "text" : "password"}
-        value={formData.password}
-        onChange={handleInputChange}
-        fullWidth
-        margin="normal"
-        error={!!errors.password}
-        helperText={errors.password}
-        disabled={isLoading}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton onClick={() => setShowPassword(!showPassword)}>
-                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      />
+        <TextField
+          label="Password"
+          name="password"
+          type={showPassword ? "text" : "password"}
+          value={formData.password}
+          onChange={handleInputChange}
+          fullWidth
+          margin="normal"
+          error={!!errors.password}
+          helperText={errors.password}
+          disabled={isLoading}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton onClick={() => setShowPassword(!showPassword)}>
+                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
 
-      {formData.password && (
-        <Box sx={{ mb: 2 }}>
-          <LinearProgress
-            variant="determinate"
-            value={passwordStrength}
-            sx={{
-              mb: 1,
-              height: 8,
-              borderRadius: 1,
-              backgroundColor: "grey.200",
-              "& .MuiLinearProgress-bar": {
-                backgroundColor:
-                  passwordStrength <= 40
-                    ? "error.main"
-                    : passwordStrength <= 80
-                    ? "warning.main"
-                    : "success.main",
-              },
-            }}
-          />
-          <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1 }}>
-            {Object.entries(validatePassword(formData.password)).map(([key, valid]) => (
-              <Box key={key} sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
-                {valid ? <Check size={16} color="green" /> : <X size={16} color="red" />}
-                <Typography
-                  variant="caption"
-                  color={valid ? "success.main" : "error.main"}
-                >
-                  {key.charAt(0).toUpperCase() + key.slice(1)}
-                </Typography>
-              </Box>
-            ))}
+        {formData.password && (
+          <Box sx={{ mb: 2 }}>
+            <LinearProgress
+              variant="determinate"
+              value={passwordStrength}
+              sx={{
+                mb: 1,
+                height: 8,
+                borderRadius: 1,
+                backgroundColor: "grey.200",
+                "& .MuiLinearProgress-bar": {
+                  backgroundColor:
+                    passwordStrength <= 40
+                      ? "error.main"
+                      : passwordStrength <= 80
+                      ? "warning.main"
+                      : "success.main",
+                },
+              }}
+            />
+            <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1 }}>
+              {Object.entries(validatePassword(formData.password)).map(([key, valid]) => (
+                <Box key={key} sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+                  {valid ? <Check size={16} color="green" /> : <X size={16} color="red" />}
+                  <Typography
+                    variant="caption"
+                    color={valid ? "success.main" : "error.main"}
+                  >
+                    {key.charAt(0).toUpperCase() + key.slice(1)}
+                  </Typography>
+                </Box>
+              ))}
+            </Box>
           </Box>
-        </Box>
-      )}
+        )}
 
-      <TextField
-        label="Confirm Password"
-        name="confirmPassword"
-        type={showConfirmPassword ? "text" : "password"}
-        value={formData.confirmPassword}
-        onChange={handleInputChange}
-        fullWidth
-        margin="normal"
-        error={!!errors.confirmPassword}
-        helperText={errors.confirmPassword}
-        disabled={isLoading}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
-                {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      />
+        <TextField
+          label="Confirm Password"
+          name="confirmPassword"
+          type={showConfirmPassword ? "text" : "password"}
+          value={formData.confirmPassword}
+          onChange={handleInputChange}
+          fullWidth
+          margin="normal"
+          error={!!errors.confirmPassword}
+          helperText={errors.confirmPassword}
+          disabled={isLoading}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                  {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
 
-      <Button
-        variant="contained"
-        color="primary"
-        fullWidth
-        onClick={handleSignUp}
-        disabled={isLoading}
-        sx={{
-          mt: 3,
-          mb: 2,
-          height: 48,
-        }}
-      >
-        {isLoading ? <CircularProgress size={24} color="inherit" /> : "Create Account"}
-      </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          fullWidth
+          onClick={handleSignUp}
+          disabled={isLoading}
+          sx={{
+            mt: 3,
+            mb: 2,
+            height: 48,
+          }}
+        >
+          {isLoading ? <CircularProgress size={24} color="inherit" /> : "Create Account"}
+        </Button>
 
-      <Typography variant="body2" align="center">
-        Already have an account?{" "}
-        <Link to="/" style={{ color: "#1976d2", textDecoration: "none" }}>
-          Login
-        </Link>
-      </Typography>
-    </CenteredContainer>
+        <Typography variant="body2" align="center">
+          Already have an account?{" "}
+          <Link to="/" style={{ color: "#1976d2", textDecoration: "none" }}>
+            Login
+          </Link>
+        </Typography>
+      </CenteredContainer>
+    </Box>
   );
 };
 

@@ -66,8 +66,12 @@ const LoginPage = () => {
       alignItems="center"
       justifyContent="center"
       minHeight="100vh"
-      bgcolor="#f5f5f5"
       padding="1rem"
+      sx={{
+        background: "linear-gradient(120deg, #2196f3, #21cbf3,rgb(45, 18, 91),rgb(49, 11, 24))",
+        backgroundSize: "400% 400%",
+        animation: "gradientAnimation 8s ease infinite",
+      }}
     >
       <Paper
         elevation={3}
@@ -81,7 +85,7 @@ const LoginPage = () => {
         }}
       >
         <Typography variant="h4" fontWeight="bold" gutterBottom>
-          Welcome Back!
+          Welcome!
         </Typography>
         <Typography variant="body1" color="textSecondary" marginBottom="1.5rem">
           Please login to continue

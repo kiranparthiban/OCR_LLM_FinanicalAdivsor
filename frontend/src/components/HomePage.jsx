@@ -24,6 +24,7 @@ import {
 } from "@mui/icons-material";
 import ReactMarkdown from "react-markdown";
 import axios from "axios";
+import Particles from "react-tsparticles";
 
 const DragDropZone = styled(Paper)(({ theme, isDragging }) => ({
   border: "2px dashed",
@@ -162,196 +163,242 @@ const HomePage = () => {
   };
 
   return (
-    <Box sx={{ minHeight: "100vh", bgcolor: "grey.50", pt: 8, pb: 8, px: 2 }}>
-      <Container maxWidth="lg">
-        <Stack spacing={6}>
-          {/* Hero Section */}
-          <Box textAlign="center">
-            <Typography
-              variant="h2"
-              component="h1"
-              gutterBottom
-              sx={{
-                fontWeight: "bold",
-                background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
-                backgroundClip: "text",
-                textFillColor: "transparent",
-                mb: 2,
-              }}
-            >
-              OCR & LLM Powered Financial Guide
-            </Typography>
-            <Typography variant="h5" color="text.secondary" sx={{ mb: 4 }}>
-              Upload your bill to get insights from our AI financial advisor
-            </Typography>
-          </Box>
+    <div style={{ position: "relative", overflow: "hidden" }}>
+      {/* Uncomment this section for Gradient Animation Background */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          background: "linear-gradient(-45deg, #2196f3,rgb(44, 61, 65), #673ab7,rgb(62, 39, 46))",
+          backgroundSize: "400% 400%",
+          animation: "gradientAnimation 1s ease infinite",
+          zIndex: -1,
+        }}
+      />
 
-          {/* Features Section */}
-          <Grid container spacing={3}>
-            <Grid item xs={12} sm={4}>
-              <FeatureCard elevation={2}>
-                <ReceiptIcon sx={{ fontSize: 40, color: "primary.main" }} />
-                <Typography variant="h6">Accurate Bill Analysis</Typography>
-                <Typography color="text.secondary">
-                  Our OCR technology extracts and summarizes important
-                  information from your bills.
-                </Typography>
-              </FeatureCard>
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <FeatureCard elevation={2}>
-                <InsightsIcon sx={{ fontSize: 40, color: "primary.main" }} />
-                <Typography variant="h6">Actionable Insights</Typography>
-                <Typography color="text.secondary">
-                  Get a detailed breakdown of spending patterns and key insights
-                  from your bills.
-                </Typography>
-              </FeatureCard>
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <FeatureCard elevation={2}>
-                <ChatIcon sx={{ fontSize: 40, color: "primary.main" }} />
-                <Typography variant="h6">AI-Powered Suggestions</Typography>
-                <Typography color="text.secondary">
-                  Personalized suggestions to optimize your finances and reduce
-                  unnecessary expenses.
-                </Typography>
-              </FeatureCard>
-            </Grid>
-          </Grid>
+      {/* Uncomment this section for Particle Animation Background */}
+      {/*<Particles
+        id="tsparticles"
+        options={{
+          background: { color: { value: "#f5f5f5" } },
+          particles: {
+            number: { value: 50 },
+            color: { value: "#2196f3" },
+            links: {
+              color: "#21cbf3",
+              distance: 150,
+              enable: true,
+              opacity: 0.5,
+              width: 1,
+            },
+            move: { enable: true, speed: 2 },
+            size: { value: 3 },
+          },
+        }}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          zIndex: -1,
+        }}
+      /> */}
 
-          {/* Upload Section */}
-          <Box sx={{ mt: 6, display: "flex", justifyContent: "center" }}>
-            <Card elevation={3} sx={{ width: "100%", maxWidth: 600, p: 2, pt: 3 }}>
-              <CardContent>
-                <DragDropZone
-                  isDragging={isDragging}
-                  onDragOver={(e) => {
-                    e.preventDefault();
-                    setIsDragging(true);
-                  }}
-                  onDragLeave={() => setIsDragging(false)}
-                  onDrop={handleFileDrop}
-                  elevation={0}
-                >
-                  <ReceiptIcon
-                    sx={{ fontSize: 48, color: "primary.main", mb: 2 }}
-                  />
-                  <Typography variant="h6" gutterBottom>
-                    Upload Your Bill
+      <Box sx={{ minHeight: "100vh", pt: 8, pb: 8, px: 2 }}>
+        <Container maxWidth="lg">
+          <Stack spacing={6}>
+            {/* Hero Section */}
+            <Box textAlign="center">
+              <Typography
+                variant="h2"
+                component="h1"
+                gutterBottom
+                sx={{
+                  fontWeight: "bold",
+                  background: "linear-gradient(45deg,rgb(194, 219, 35) 75%,rgb(66, 58, 42) 90%)",
+                  backgroundClip: "text",
+                  textFillColor: "transparent",
+                  mb: 2,
+                }}
+              >
+                AI Agent Based Financial Accountant
+              </Typography>
+              <Typography variant="h5" color="text.secondary" sx={{ mb: 4 }}>
+                Upload your bill to get insights from our AI financial advisor
+              </Typography>
+            </Box>
+
+            {/* Features Section */}
+            <Grid container spacing={3}>
+              <Grid item xs={12} sm={4} sx={{ mb: 2 }}>
+                <FeatureCard elevation={2}>
+                  <ReceiptIcon sx={{ fontSize: 40, color: "primary.main" }} />
+                  <Typography variant="h6">Accurate Bill Analysis</Typography>
+                  <Typography color="text.secondary">
+                    Our OCR technology extracts and summarizes important
+                    information from your bills.
                   </Typography>
-                  <Typography
-                    variant="body1"
-                    color="text.secondary"
-                    gutterBottom
+                </FeatureCard>
+              </Grid>
+              <Grid item xs={12} sm={4} sx={{ mb: 2 }}>
+                <FeatureCard elevation={2}>
+                  <InsightsIcon sx={{ fontSize: 40, color: "primary.main" }} />
+                  <Typography variant="h6">Actionable Insights</Typography>
+                  <Typography color="text.secondary">
+                    Get a detailed breakdown of spending patterns and key
+                    insights from your bills.
+                  </Typography>
+                </FeatureCard>
+              </Grid>
+              <Grid item xs={12} sm={4} sx={{ mb: 2 }}>
+                <FeatureCard elevation={2}>
+                  <ChatIcon sx={{ fontSize: 40, color: "primary.main" }} />
+                  <Typography variant="h6">AI-Powered Suggestions</Typography>
+                  <Typography color="text.secondary">
+                    Personalized suggestions to optimize your finances and
+                    reduce unnecessary expenses.
+                  </Typography>
+                </FeatureCard>
+              </Grid>
+            </Grid>
+
+            {/* Upload Section */}
+            <Box sx={{ mt: 6, display: "flex", justifyContent: "center" }}>
+              <Card elevation={3} sx={{ width: "100%", maxWidth: 600, p: 2, pt: 3 }}>
+                <CardContent>
+                  <DragDropZone
+                    isDragging={isDragging}
+                    onDragOver={(e) => {
+                      e.preventDefault();
+                      setIsDragging(true);
+                    }}
+                    onDragLeave={() => setIsDragging(false)}
+                    onDrop={handleFileDrop}
+                    elevation={0}
                   >
-                    Drag and drop your bill here, or click to select
-                  </Typography>
-                  <label htmlFor="file-upload">
-                    <Button
-                      variant="contained"
-                      component="span"
-                      startIcon={<CloudUploadIcon />}
-                      sx={{ mt: 2 }}
+                    <ReceiptIcon
+                      sx={{ fontSize: 48, color: "primary.main", mb: 2 }}
+                    />
+                    <Typography variant="h6" gutterBottom>
+                      Upload Your Bill
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      color="text.secondary"
+                      gutterBottom
                     >
-                      Select Bill
-                    </Button>
-                  </label>
-                  <VisuallyHiddenInput
-                    id="file-upload"
-                    type="file"
-                    accept=".pdf,image/jpeg,image/png"
-                    onChange={handleFileChange}
-                  />
-                  <Typography
-                    variant="caption"
-                    color="text.secondary"
-                    sx={{ mt: 1, display: "block" }}
-                  >
-                    Supported formats: PDF, PNG, JPG (up to 5MB)
-                  </Typography>
-                </DragDropZone>
-
-                {file && (
-                  <Paper sx={{ mt: 2, p: 2 }} variant="outlined">
-                    {imagePreview && (
-                      <Box
-                        sx={{
-                          display: "flex",
-                          justifyContent: "center",
-                          mb: 2,
-                        }}
+                      Drag and drop your bill here, or click to select
+                    </Typography>
+                    <label htmlFor="file-upload">
+                      <Button
+                        variant="contained"
+                        component="span"
+                        startIcon={<CloudUploadIcon />}
+                        sx={{ mt: 2 }}
                       >
-                        <img
-                          src={imagePreview}
-                          alt="Preview"
-                          style={{ maxWidth: "100%", height: "auto" }}
-                        />
-                      </Box>
-                    )}
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                      <ReceiptIcon color="primary" />
-                      <Box sx={{ flexGrow: 1 }}>
-                        <Typography variant="subtitle2" noWrap>
-                          {file.name}
-                        </Typography>
-                        <Typography variant="caption" color="text.secondary">
-                          {(file.size / 1024 / 1024).toFixed(2)} MB
-                        </Typography>
-                      </Box>
-                      <IconButton size="small" onClick={() => setFile(null)}>
-                        <CloseIcon />
-                      </IconButton>
-                    </Box>
-                    {isUploading && (
-                      <Box sx={{ mt: 2 }}>
-                        <LinearProgress
-                          variant="determinate"
-                          value={uploadProgress}
-                        />
-                      </Box>
-                    )}
-                  </Paper>
-                )}
+                        Select Bill
+                      </Button>
+                    </label>
+                    <VisuallyHiddenInput
+                      id="file-upload"
+                      type="file"
+                      accept=".pdf,image/jpeg,image/png"
+                      onChange={handleFileChange}
+                    />
+                    <Typography
+                      variant="caption"
+                      color="text.secondary"
+                      sx={{ mt: 1, display: "block" }}
+                    >
+                      Supported formats: PDF, PNG, JPG (up to 5MB)
+                    </Typography>
+                  </DragDropZone>
 
-                {error && (
-                  <Alert
-                    severity="error"
-                    sx={{ mt: 2 }}
-                    onClose={() => setError(null)}
-                  >
-                    {error}
-                  </Alert>
-                )}
-
-                {response && (
-                  <Alert severity="success" sx={{ mt: 2 }}>
-                    <Typography variant="h6">Financial Summary:</Typography>
-                    <ReactMarkdown>{response}</ReactMarkdown>
-                  </Alert>
-                )}
-              </CardContent>
-              <CardActions>
-                <Button
-                  variant="contained"
-                  fullWidth
-                  size="large"
-                  onClick={handleUpload}
-                  disabled={!file || isUploading}
-                  startIcon={isUploading ? null : <CloudUploadIcon />}
-                >
-                  {isUploading ? (
-                    <>Processing Bill ({uploadProgress}%)</>
-                  ) : (
-                    "Analyze Bill"
+                  {file && (
+                    <Paper sx={{ mt: 2, p: 2 }} variant="outlined">
+                      {imagePreview && (
+                        <Box
+                          sx={{
+                            display: "flex",
+                            justifyContent: "center",
+                            mb: 2,
+                          }}
+                        >
+                          <img
+                            src={imagePreview}
+                            alt="Preview"
+                            style={{ maxWidth: "100%", height: "auto" }}
+                          />
+                        </Box>
+                      )}
+                      <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                        <ReceiptIcon color="primary" />
+                        <Box sx={{ flexGrow: 1 }}>
+                          <Typography variant="subtitle2" noWrap>
+                            {file.name}
+                          </Typography>
+                          <Typography variant="caption" color="text.secondary">
+                            {(file.size / 1024 / 1024).toFixed(2)} MB
+                          </Typography>
+                        </Box>
+                        <IconButton size="small" onClick={() => setFile(null)}>
+                          <CloseIcon />
+                        </IconButton>
+                      </Box>
+                      {isUploading && (
+                        <Box sx={{ mt: 2 }}>
+                          <LinearProgress
+                            variant="determinate"
+                            value={uploadProgress}
+                          />
+                        </Box>
+                      )}
+                    </Paper>
                   )}
-                </Button>
-              </CardActions>
-            </Card>
-          </Box>
-        </Stack>
-      </Container>
-    </Box>
+
+                  {error && (
+                    <Alert
+                      severity="error"
+                      sx={{ mt: 2 }}
+                      onClose={() => setError(null)}
+                    >
+                      {error}
+                    </Alert>
+                  )}
+
+                  {response && (
+                    <Alert severity="success" sx={{ mt: 2 }}>
+                      <Typography variant="h6">Financial Summary:</Typography>
+                      <ReactMarkdown>{response}</ReactMarkdown>
+                    </Alert>
+                  )}
+                </CardContent>
+                <CardActions>
+                  <Button
+                    variant="contained"
+                    fullWidth
+                    size="large"
+                    onClick={handleUpload}
+                    disabled={!file || isUploading}
+                    startIcon={isUploading ? null : <CloudUploadIcon />}
+                  >
+                    {isUploading ? (
+                      <>Processing Bill ({uploadProgress}%)</>
+                    ) : (
+                      "Analyze Bill"
+                    )}
+                  </Button>
+                </CardActions>
+              </Card>
+            </Box>
+          </Stack>
+        </Container>
+      </Box>
+    </div>
   );
 };
 
